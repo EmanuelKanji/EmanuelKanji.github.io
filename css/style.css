@@ -48,6 +48,7 @@ section h2 {
 
 /* Proyectos Styles */
 
+/*************  ✨ Codeium Command 🌟  *************/
 .proyecto {
   display: inline-block;
   width: calc(33.33% - 20px);
@@ -66,12 +67,16 @@ section h2 {
 .proyecto h3 {
   font-size: 18px;
   margin-bottom: 10px;
+  font-weight: 700;
 }
 
 .proyecto p {
   font-size: 16px;
   margin-bottom: 20px;
+  line-height: 1.5;
+  color: #666;
 }
+/******  183f5261-9f7b-4951-bbd1-11a026114206  *******/
 
 /* Estilos de las miniaturas*/
 
