@@ -72,15 +72,15 @@ section h2 {
   font-size: 16px;
   margin-bottom: 20px;
 }
-/* Estilos de las miniaturas*/
-.proyecto {
-  text-align: center;
-  margin: 20px;
-  transition: transform 0.3s;
-}
 
-.proyecto:hover {
-  transform: scale(1.05);
+/* Estilos de las miniaturas*/
+
+.miniatura {
+  display: inline-block;
+  width: calc(33.33% - 20px);
+  margin: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .miniatura img {
@@ -91,12 +91,12 @@ section h2 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-h3 {
+.miniatura h3 {
   margin-top: 10px;
   font-size: 1.5rem;
 }
 
-.proyecto p {
+.miniatura p {
   font-size: 1rem;
   color: #555;
 }
@@ -174,3 +174,4 @@ h3 {
     margin: 20px 0;
   }
 }
+
