@@ -21,7 +21,7 @@ body {
 h1, h2, h3 {
   font-family: 'Georgia', serif;
   font-weight: bold;
-  color: #ffffff;
+  color: #111;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   margin-bottom: 20px;
@@ -48,8 +48,8 @@ p {
 */
 
 header {
-  background-color: #1a1a1a;
-  color: white;
+  background-color: #ffffff;
+  color: #111;
   padding: 50px 20px;
   text-align: center;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -68,7 +68,7 @@ header nav {
 */
 
 header nav a {
-  color: white;
+  color: #111;
   text-decoration: none;
   margin: 0 20px;
   font-size: 1.2rem;
@@ -89,8 +89,8 @@ header nav a:hover {
 */
 
 footer {
-  background-color: #1a1a1a;
-  color: white;
+  background-color: #111;
+  color: #fff;
   padding: 20px;
   text-align: center;
   margin-top: 40px;
@@ -110,7 +110,7 @@ footer p {
 */
 
 footer a {
-  color: #f39c12;
+  color: #fff;
   text-decoration: none;
 }
 
@@ -149,6 +149,8 @@ h3 {
   width: 300px;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: inline-block;
+  float: left;
 }
 
 /*
@@ -304,7 +306,7 @@ form input, form textarea {
 
 /*
   Estilos para los inputs y textareas del formulario de contacto al pasar el mouse
-*/
+ */
 
 form input:focus, form textarea:focus {
   border-color: #f39c12;
@@ -343,4 +345,5 @@ form button {
 form button:hover {
   background-color: #e67e22;
 }
+
 
