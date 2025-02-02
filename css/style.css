@@ -1,11 +1,5 @@
-/*
-  Estilos globales
-*/
-
+/* Estilos globales */
 body {
-  /*
-    Estilos para el body
-  */
   font-family: 'Helvetica Neue', sans-serif;
   background-color: #f9f9f9;
   margin: 0;
@@ -14,10 +8,7 @@ body {
   color: #444;
 }
 
-/*
-  Estilos para los titulos
-*/
-
+/* Estilos para los títulos */
 h1, h2, h3 {
   font-family: 'Georgia', serif;
   font-weight: bold;
@@ -27,10 +18,7 @@ h1, h2, h3 {
   margin-bottom: 20px;
 }
 
-/*
-  Estilos para los parrafos
-*/
-
+/* Estilos para los párrafos */
 p {
   font-size: 1rem;
   line-height: 1.8;
@@ -43,30 +31,22 @@ p {
   margin-right: auto;
 }
 
-/*
-  Estilos para el Header
-*/
-
+/* Estilos para el Header */
 header {
-  background-color: #ffffff;
+  background-color: #f5f5f5;
   color: #111;
-  padding: 50px 20px;
+  padding: 40px 20px;
   text-align: center;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
 }
 
-/*
-  Estilos para el nav del Header
-*/
-
+/* Estilos para el nav del Header */
 header nav {
   margin-top: 20px;
 }
 
-/*
-  Estilos para los enlaces del nav del Header
-*/
-
+/* Estilos para los enlaces del nav del Header */
 header nav a {
   color: #111;
   text-decoration: none;
@@ -76,56 +56,38 @@ header nav a {
   transition: color 0.3s ease;
 }
 
-/*
-  Estilos para los enlaces del nav del Header al pasar el mouse
-*/
-
+/* Estilos para los enlaces del nav del Header al pasar el mouse */
 header nav a:hover {
   color: #f39c12;
 }
 
-/*
-  Estilos para el Footer
-*/
-
+/* Estilos para el Footer */
 footer {
   background-color: #111;
   color: #fff;
-  padding: 20px;
+  padding: 40px 20px;
   text-align: center;
   margin-top: 40px;
 }
 
-/*
-  Estilos para el parrafo del Footer
-*/
-
+/* Estilos para el parrafo del Footer */
 footer p {
   font-size: 1rem;
   margin: 0;
 }
 
-/*
-  Estilos para los enlaces del Footer
-*/
-
+/* Estilos para los enlaces del Footer */
 footer a {
   color: #fff;
   text-decoration: none;
 }
 
-/*
-  Estilos para los enlaces del Footer al pasar el mouse
-*/
-
+/* Estilos para los enlaces del Footer al pasar el mouse */
 footer a:hover {
   text-decoration: underline;
 }
 
-/*
-  Estilos para los titulos h3
-*/
-
+/* Estilos para los títulos h3 */
 h3 {
   font-size: 1.4rem;
   color: #333;
@@ -136,38 +98,31 @@ h3 {
   text-transform: capitalize;
 }
 
-/*
-  Estilos para las miniaturas de los proyectos
-*/
-
+/* Estilos para las miniaturas de los proyectos */
 .proyecto {
   background: #fff;
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 20px;
-  width: 300px;
+  width: 250px;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: inline-block;
-  float: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
-/*
-  Estilos para las miniaturas de los proyectos al pasar el mouse
-*/
-
+/* Estilos para las miniaturas de los proyectos al pasar el mouse */
 .proyecto:hover {
   transform: translateY(-8px);
   box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
 }
 
-/*
-  Estilos para las imagenes de las miniaturas
-*/
-
+/* Estilos para las imágenes de las miniaturas */
 .miniatura img {
-  width: 80%;
+  width: 100%;
   height: auto;
   border-radius: 8px;
   object-fit: cover;
@@ -175,19 +130,13 @@ h3 {
   margin-bottom: 15px;
 }
 
-/*
-  Estilos para las imagenes de las miniaturas al pasar el mouse
-*/
-
+/* Estilos para las imágenes de las miniaturas al pasar el mouse */
 .miniatura img:hover {
   transform: scale(1.05);
   filter: brightness(0.9);
 }
 
-/*
-  Estilos para la seccion de tecnologias
-*/
-
+/* Estilos para la sección de tecnologías */
 .tecnologias {
   margin-top: 15px;
   display: flex;
@@ -196,10 +145,7 @@ h3 {
   gap: 10px;
 }
 
-/*
-  Estilos para los span de las tecnologias
-*/
-
+/* Estilos para los span de las tecnologías */
 .tecnologias span {
   background-color: #f39c12;
   color: #fff;
@@ -211,51 +157,36 @@ h3 {
   transition: background-color 0.3s ease;
 }
 
-/*
-  Estilos para los span de las tecnologias al pasar el mouse
-*/
-
+/* Estilos para los span de las tecnologías al pasar el mouse */
 .tecnologias span:hover {
   background-color: #e67e22;
 }
 
-/*
-  Estilos para el enlace de cada proyecto
-*/
-
+/* Estilos para el enlace de cada proyecto */
 .proyecto a {
   text-decoration: none;
   color: inherit;
   transition: color 0.3s ease;
 }
 
-/*
-  Estilos para el enlace de cada proyecto al pasar el mouse
-*/
-
+/* Estilos para el enlace de cada proyecto al pasar el mouse */
 .proyecto a:hover {
   color: #f39c12;
 }
 
-/*
-  Estilos para la seccion del Portafolio
-*/
-
+/* Estilos para la sección del Portafolio */
 .portafolio {
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   gap: 20px;
   text-align: center;
 }
 
-/*
-  Estilos para el formulario de contacto
-*/
-
+/* Estilos para el formulario de contacto */
 form {
   background-color: #fff;
   padding: 30px;
@@ -266,10 +197,7 @@ form {
   font-family: 'Arial', sans-serif;
 }
 
-/*
-  Estilos para el titulo del formulario de contacto
-*/
-
+/* Estilos para el título del formulario de contacto */
 form h2 {
   text-align: center;
   font-size: 1.8rem;
@@ -278,10 +206,7 @@ form h2 {
   font-weight: bold;
 }
 
-/*
-  Estilos para los labels del formulario de contacto
-*/
-
+/* Estilos para los labels del formulario de contacto */
 form label {
   display: block;
   margin-bottom: 8px;
@@ -289,10 +214,7 @@ form label {
   color: #333;
 }
 
-/*
-  Estilos para los inputs y textareas del formulario de contacto
-*/
-
+/* Estilos para los inputs y textareas del formulario de contacto */
 form input, form textarea {
   width: 100%;
   padding: 12px;
@@ -304,28 +226,19 @@ form input, form textarea {
   transition: border-color 0.3s ease;
 }
 
-/*
-  Estilos para los inputs y textareas del formulario de contacto al pasar el mouse
- */
-
+/* Estilos para los inputs y textareas del formulario de contacto al pasar el mouse */
 form input:focus, form textarea:focus {
   border-color: #f39c12;
   outline: none;
 }
 
-/*
-  Estilos para la textarea del formulario de contacto
-*/
-
+/* Estilos para la textarea del formulario de contacto */
 form textarea {
   resize: vertical;
   height: 150px;
 }
 
-/*
-  Estilos para el boton de enviar del formulario de contacto
-*/
-
+/* Estilos para el botón de enviar del formulario de contacto */
 form button {
   background-color: #f39c12;
   color: white;
@@ -338,12 +251,7 @@ form button {
   transition: background-color 0.3s ease;
 }
 
-/*
-  Estilos para el boton de enviar del formulario de contacto al pasar el mouse
-*/
-
+/* Estilos para el botón de enviar del formulario de contacto al pasar el mouse */
 form button:hover {
   background-color: #e67e22;
 }
-
-
