@@ -72,6 +72,49 @@ section h2 {
   font-size: 16px;
   margin-bottom: 20px;
 }
+/* Estilos de las miniaturas*/
+.proyecto {
+  text-align: center;
+  margin: 20px;
+  transition: transform 0.3s;
+}
+
+.proyecto:hover {
+  transform: scale(1.05);
+}
+
+.miniatura img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+  margin-top: 10px;
+  font-size: 1.5rem;
+}
+
+.proyecto p {
+  font-size: 1rem;
+  color: #555;
+}
+
+.tecnologias {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tecnologias span {
+  background-color: #f4f4f4;
+  padding: 5px 10px;
+  margin: 0 5px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
 
 /* Contacto Styles */
 
