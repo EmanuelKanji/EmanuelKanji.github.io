@@ -1,328 +1,237 @@
-/* 
-  Estilos globales
-*/
-
-body {
-  font-family: 'Helvetica Neue', sans-serif;
-  background-color: #f9f9f9;
+/* Reset de estilos básicos */
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: #444;
-}
-
-/* 
-  Estilos para los titulos
-*/
-
-h1, h2, h3 {
-  font-family: 'Georgia', serif;
-  font-weight: bold;
-  color: #000;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-bottom: 20px;
-}
-
-/* 
-  Estilos para los parrafos
-*/
-
-p {
-  font-size: 1rem;
-  line-height: 1.8;
-  color: #333;
-  margin-bottom: 20px;
-  font-style: italic;
-  text-align: justify;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* 
-  Estilos para el Header
-*/
-
-header {
-  background-color: #f39c12;
-  color: #fff;
-  padding: 50px 20px;
-  text-align: center;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* 
-  Estilos para el nav del Header
-*/
-
-header nav {
-  margin-top: 20px;
-}
-
-/* 
-  Estilos para los enlaces del nav del Header
-*/
-
-header nav a {
-  color: #fff;
-  text-decoration: none;
-  margin: 0 20px;
-  font-size: 1.2rem;
-  font-weight: 500;
-  transition: color 0.2s ease;
-}
-
-/* 
-  Estilos para los enlaces del nav del Header al pasar el mouse
-*/
-
-header nav a:hover {
-  color: #333;
-}
-
-/* 
-  Estilos para el Footer
-*/
-
-footer {
-  background-color: #111;
-  color: #fff;
-  padding: 20px;
-  text-align: center;
-  margin-top: 40px;
-}
-
-/* 
-  Estilos para el parrafo del Footer
-*/
-
-footer p {
-  font-size: 1rem;
-  margin: 0;
-}
-
-/* 
-  Estilos para los enlaces del Footer
-*/
-
-footer a {
-  color: #fff;
-  text-decoration: none;
-}
-
-/* 
-  Estilos para los enlaces del Footer al pasar el mouse
-*/
-
-footer a:hover {
-  text-decoration: underline;
-}
-
-/* 
-  Estilos para los titulos h3
-*/
-
-h3 {
-  font-size: 1.4rem;
-  color: #000;
-  text-align: center;
-  margin-bottom: 20px;
-  letter-spacing: 1px;
-  font-family: 'Georgia', serif;
-  text-transform: capitalize;
-}
-
-/* 
-  Estilos para las miniaturas de los proyectos
-*/
-
-.proyecto {
-  background: #fff;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 20px;
-  width: 250px;
-  text-align: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  display: inline-block;
-}
-
-.proyecto:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* 
-  Estilos para las imagenes de las miniaturas
-*/
-
-.miniatura img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  object-fit: cover;
-  transition: transform 0.2s ease;
-  margin-bottom: 15px;
-}
-
-.miniatura img:hover {
-  transform: scale(1.05);
-}
-
-/* 
-  Estilos para la seccion de tecnologias
-*/
-
-.tecnologias {
-  margin-top: 15px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-}
-
-/* 
-  Estilos para los span de las tecnologias
-*/
-
-.tecnologias span {
-  background-color: #f39c12;
-  color: #fff;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  font-weight: bold;
-  text-transform: capitalize;
-  transition: background-color 0.2s ease;
-}
-
-.tecnologias span:hover {
-  background-color: #e67e22;
-}
-
-/* 
-  Estilos para el enlace de cada proyecto
-*/
-
-.proyecto a {
-  text-decoration: none;
-  color: inherit;
-  transition: color 0.2s ease;
-}
-
-.proyecto a:hover {
-  color: #f39c12;
-}
-
-/* 
-  Estilos para la seccion del Portafolio
-*/
-
-.portafolio {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  gap: 20px;
-  text-align: center;
-}
-
-/* 
-  Estilos para el formulario de contacto
-*/
-
-form {
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
-  margin: 40px auto;
   font-family: 'Arial', sans-serif;
 }
 
-/* 
-  Estilos para el titulo del formulario de contacto
-*/
-
-form h2 {
-  text-align: center;
-  font-size: 1.8rem;
-  color: #000;
-  margin-bottom: 20px;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-/* 
-  Estilos para los labels del formulario de contacto
-*/
-
-form label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 600;
+/* Body */
+body {
+  background-color: #f4f4f9;
   color: #333;
+  line-height: 1.6;
+  font-size: 16px;
+  padding: 0;
 }
 
-/* 
-  Estilos para los inputs y textareas del formulario de contacto
-*/
-
-form input, form textarea {
-  width: 100%;
-  padding: 12px;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  font-size: 1rem;
-  color: #333;
-  transition: border-color 0.2s ease;
-}
-
-/* 
-  Estilos para los inputs y textareas del formulario de contacto al pasar el mouse
-*/
-
-form input:focus, form textarea:focus {
-  border-color: #444;
-  outline: none;
-}
-
-/* 
-  Estilos para la textarea del formulario de contacto
-*/
-
-form textarea {
-  resize: vertical;
-  height: 150px;
-}
-
-/* 
-  Estilos para el boton de enviar del formulario de contacto
-*/
-
-form button {
-  background-color: #444;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 8px;
-  font-size: 1.1rem;
-  cursor: pointer;
-  width: 100%;
-  transition: background-color 0.2s ease;
-}
-
-/* 
-  Estilos para el boton de enviar del formulario de contacto al pasar el mouse
-*/
-
-form button:hover {
+/* Header */
+header {
   background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 80px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  animation: fadeInUp 1s ease-out;
+}
+
+header p {
+  font-size: 1.2rem;
+  color: #bbb;
+  animation: fadeInUp 1s ease-out 0.5s;
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+  0% {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Sección sobre mí */
+#sobre-mi {
+  padding: 50px 20px;
+  text-align: center;
+  background-color: #fff;
+  margin: 30px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#sobre-mi h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+  animation: fadeInUp 1s ease-out;
+}
+
+#sobre-mi p {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 800px;
+  margin: 0 auto;
+  animation: fadeInUp 1s ease-out 0.5s;
+}
+
+/* Sección Proyectos */
+#proyectos {
+  padding: 50px 20px;
+  background-color: #fafafa;
+  text-align: center;
+}
+
+#proyectos h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 30px;
+  animation: fadeInUp 1s ease-out;
+}
+
+.proyecto {
+  display: inline-block;
+  width: 30%;
+  margin: 0 15px 30px;
+  text-align: left;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  padding-bottom: 60px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.proyecto:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Mostrar detalles al hacer hover */
+.proyecto .contenido {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  padding: 0 20px;
+}
+
+.proyecto:hover .contenido {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.miniatura img {
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+}
+
+.proyecto h3 {
+  font-size: 1.5rem;
+  color: #333;
+  padding: 20px;
+  font-weight: bold;
+}
+
+.proyecto p {
+  color: #666;
+  font-size: 1rem;
+  display: none;
+}
+
+.proyecto:hover p {
+  display: block;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.tecnologias {
+  display: none;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 20px;
+}
+
+.proyecto:hover .tecnologias {
+  display: flex;
+  animation: fadeInUp 0.6s ease-out 0.3s;
+}
+
+.tecnologias span {
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.tecnologias span:hover {
+  background-color: #007BFF;
+}
+
+/* Sección Contacto */
+#contacto {
+  padding: 50px 20px;
+  background-color: #fff;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#contacto h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 30px;
+  animation: fadeInUp 1s ease-out;
+}
+
+#contacto form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#contacto input,
+#contacto textarea {
+  width: 80%;
+  max-width: 600px;
+  padding: 15px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+#contacto input:focus,
+#contacto textarea:focus {
+  border-color: #007BFF;
+}
+
+#contacto button {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#contacto button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos Responsive */
+@media screen and (max-width: 768px) {
+  .proyecto {
+      width: 100%;
+  }
+
+  #contacto input,
+  #contacto textarea {
+      width: 90%;
+  }
+
+  #contacto button {
+      width: 90%;
+  }
+}
