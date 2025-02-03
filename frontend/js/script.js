@@ -24,26 +24,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify(data)
             });
 
+            // Comprobamos si la respuesta es exitosa
+            if (!response.ok) {
+                const result = await response.json();
+                console.error('Error en el servidor:', result);  // Imprimimos el error del servidor si es que hay uno
+                alert('Error al enviar el mensaje: ' + (result.message || 'Intenta más tarde.'));
+                return;
+            }
+
             const result = await response.json();
             console.log('Respuesta del servidor:', result);
 
-            if (response.ok) {
-                alert('Mensaje enviado con éxito');
-                document.querySelector('#contact-form').reset();
-            } else {
-                alert('Error al enviar el mensaje: ' + (result.message || 'Intenta más tarde.'));
-            }
+            alert('Mensaje enviado con éxito');
+            document.querySelector('#contact-form').reset();
         } catch (error) {
-            // Aquí revisamos si el error es por la red o por otra cosa
-            if (error.name === 'TypeError' && error.message.includes('failed')) {
-                // Si hay un problema con la conexión a la red o al servidor
-                console.error('Problema con la conexión:', error);
-                alert('Error de conexión. Verifica tu red o intenta más tarde.');
-            } else {
-                // Si es otro tipo de error
-                console.error('Otro error:', error);
-                alert('Error inesperado. Intenta más tarde.');
-            }
+            // Aquí revisamos si el error es por la red o por otro tipo de error
+            console.error('Error inesperado:', error);  // Imprimimos todo el error
+            alert('Error inesperado. Intenta más tarde.');
         }
     });
 });
