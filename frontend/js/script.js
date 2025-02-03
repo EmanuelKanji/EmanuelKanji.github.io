@@ -1,39 +1,43 @@
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelector('#contact-form').addEventListener('submit', async (event) => {
-        event.preventDefault(); // Evita que la página se recargue al enviar el formulario
+    // Seleccionamos el formulario, ya sea por clase, id o genérico
+    const form = document.querySelector('#contact-form') || document.querySelector('form');
 
-        // Capturamos los valores del formulario
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault(); // Evita que la página se recargue
+
+        // Capturamos los valores de los campos del formulario
         const nombre = document.querySelector('#nombre').value.trim();
         const email = document.querySelector('#email').value.trim();
+        const telefono = document.querySelector('#telefono') ? document.querySelector('#telefono').value.trim() : null;
         const mensaje = document.querySelector('#mensaje').value.trim();
 
-        // Validación de los campos
-        if (!nombre || !email || !mensaje) {
-            alert('Por favor, completa todos los campos.');
+        // Validación básica
+        if (!nombre || !email || !mensaje || (telefono === null && !document.querySelector('#telefono'))) {
+            alert('Por favor, completa todos los campos obligatorios.');
             return;
         }
 
         // Creamos un objeto con los datos del formulario
-        const data = { nombre, email, mensaje };
+        const data = { nombre, email, telefono, mensaje };
 
         try {
-            // Enviar la solicitud POST al servidor para guardar los datos
-            const response = await fetch('https://kanjiro34-github-io.onrender.com/api/contacto', {
+            // Usamos una URL de la API que es fácilmente modificable
+            const apiURL = 'https://proyectojavic.onrender.com/api/contacto'; // Cambia esta URL según tu necesidad
+
+            const response = await fetch(apiURL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             });
 
-            // Verificar si la respuesta fue exitosa
+            const result = await response.json();  // Respuesta del servidor
+            console.log('Respuesta del servidor:', result);
+
             if (response.ok) {
-                const result = await response.json();  // Respuesta del servidor
-                console.log('Respuesta del servidor:', result);
                 alert('Mensaje enviado con éxito');
-                document.querySelector('#contact-form').reset(); // Reseteamos el formulario
+                form.reset(); // Reseteamos el formulario
             } else {
-                // Si la respuesta no fue exitosa, mostramos un mensaje de error
-                const errorResponse = await response.json();
-                alert('Error al enviar el mensaje: ' + (errorResponse.message || 'Intenta más tarde.'));
+                alert('Error al enviar el mensaje: ' + (result.message || 'Intenta más tarde.'));
             }
         } catch (error) {
             // En caso de error de red o cualquier otro, mostrar un mensaje
