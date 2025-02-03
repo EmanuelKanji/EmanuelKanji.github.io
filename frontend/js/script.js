@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = { nombre, email, mensaje };
 
         try {
-            // ⚠️ IMPORTANTE: Cambia 'URL_DE_TU_API' por la URL real en Render
-            const response = await fetch('https://kanjiro34-github-io.onrender.com/api/contacto', {
+            // Conectamos al backend
+            const response = await fetch('/api/contacto', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
@@ -44,3 +44,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
