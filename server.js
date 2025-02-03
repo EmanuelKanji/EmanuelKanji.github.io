@@ -13,20 +13,24 @@ const cors = require('cors');
 // Importar el módulo path para resolver rutas de archivos
 const path = require('path');
 
-// Importar configuración del proyecto
-const config = require('./backend/config/config');
-
-// Conectar a la base de datos de MongoDB
-require('./backend/config/db');
-
 // Crear el objeto de express
 const app = express();
 
-// Definir el puerto del servidor
-const PORT = config.port || 5000;
+// Conectar a la base de datos de MongoDB
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Conectado a MongoDB'))
+  .catch(err => console.error('Error al conectar a MongoDB:', err));
 
-// Habilitar cors, para permitir peticiones desde cualquier origen
-app.use(cors());
+// Definir el puerto del servidor
+const PORT = process.env.PORT || 5000;
+
+// Configuración de CORS
+const allowedOrigins = ['https://kanjiro34.github.io'];  // Reemplaza con el dominio de tu frontend
+app.use(cors({
+  origin: allowedOrigins,  // Permitir solo el dominio de tu frontend
+  methods: ['GET', 'POST'], // Permitir los métodos GET y POST
+  allowedHeaders: ['Content-Type'],  // Permitir el header Content-Type
+}));
 
 // Habilitar el parsing de JSON en las peticiones
 app.use(express.json());
@@ -39,7 +43,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));  // Servir el index.html desde la carpeta 'build'
 });
 
-// Importar las rutas
+// Importar las rutas de contacto
 const contactRoutes = require('./backend/routes/contactRoutes');
 
 // Establecer la ruta para las peticiones de contacto
