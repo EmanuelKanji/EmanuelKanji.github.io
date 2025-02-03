@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             // Envía los datos al backend local para que se guarden en MongoDB Compass
-            const response = await fetch('https://portafolio-4c57.onrender.com', { // URL de tu backend local
+            const response = await fetch('https://portafolio-4c57.onrender.com/api/contacto', { // URL de tu backend local
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
