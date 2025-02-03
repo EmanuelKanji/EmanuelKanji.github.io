@@ -34,9 +34,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Error al enviar el mensaje: ' + (result.message || 'Intenta más tarde.'));
             }
         } catch (error) {
-            console.error('Error en la solicitud:', error);
-            alert('Error de conexión. Verifica tu red o intenta más tarde.');
+            // Aquí revisamos si el error es por la red o por otra cosa
+            if (error.name === 'TypeError' && error.message.includes('failed')) {
+                // Si hay un problema con la conexión a la red o al servidor
+                console.error('Problema con la conexión:', error);
+                alert('Error de conexión. Verifica tu red o intenta más tarde.');
+            } else {
+                // Si es otro tipo de error
+                console.error('Otro error:', error);
+                alert('Error inesperado. Intenta más tarde.');
+            }
         }
     });
 });
-
