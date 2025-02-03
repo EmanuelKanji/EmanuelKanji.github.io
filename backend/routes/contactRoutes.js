@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Contact = require('../models/contact'); // Ruta al modelo Contact
+const Contact = require('../models/Contact'); // Ruta al modelo Contact
 
 // Ruta POST para manejar el formulario de contacto
 router.post('/', async (req, res) => {
