@@ -1,8 +1,10 @@
-// server.js
+// Importamos las dependencias
 const express = require('express');
 const mongoose = require('mongoose');
-const app = express();
+const cors = require('cors');  // Importamos el middleware cors
 require('dotenv').config();  // Cargar las variables de entorno desde el archivo .env
+
+const app = express();
 
 // Validar que la variable de entorno MONGO_URI esté definida
 if (!process.env.MONGO_URI) {
@@ -10,7 +12,10 @@ if (!process.env.MONGO_URI) {
   process.exit(1);  // Salir del proceso si la variable no está definida
 }
 
-// Conexión a MongoDB Atlas usando Mongoose
+// Usamos CORS para permitir solicitudes de cualquier origen
+app.use(cors());  // Permitir CORS de cualquier origen
+
+// Conectar a MongoDB Atlas usando Mongoose
 const mongoURI = process.env.MONGO_URI;  // Usar la URI de las variables de entorno
 mongoose.connect(mongoURI, {
     useNewUrlParser: true,
@@ -24,7 +29,7 @@ mongoose.connect(mongoURI, {
     process.exit(1);  // Salir si la conexión falla
   });
 
-// Definimos el esquema de Contacto
+// Definir el esquema de Contacto
 const contactSchema = new mongoose.Schema({
     nombre: String,
     email: String,
