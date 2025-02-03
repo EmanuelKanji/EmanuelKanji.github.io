@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Validación básica
         if (!nombre || !email || !mensaje) {
-            alert('Por favor, completa todos los campos obligatorios.');
+            alert('Por favor, completa todos los campos.');
             return;
         }
 
@@ -20,8 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = { nombre, email, mensaje };
 
         try {
-            // Usamos una URL de la API que es fácilmente modificable
-            const apiURL = 'https://kanjiro34.github.io.onrender.com/api/contacto'; // Cambia esta URL según tu necesidad
+            // Usamos la URL de la API correcta
+            const apiURL = 'https://kanjiro34.github.io/api/contacto'; // Cambia esta URL según tu necesidad
 
             const response = await fetch(apiURL, {
                 method: 'POST',
