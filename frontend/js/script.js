@@ -1,16 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Seleccionamos el formulario, ya sea por clase, id o genérico
-    const form = document.querySelector('#contact-form') || document.querySelector('form');
+    document.querySelector('#contact-form').addEventListener('submit', async (event) => {
+        event.preventDefault(); // Evita que la página se recargue al enviar el formulario
 
-    form.addEventListener('submit', async (event) => {
-        event.preventDefault(); // Evita que la página se recargue
-
-        // Capturamos los valores de los campos del formulario
+        // Capturamos los valores del formulario
         const nombre = document.querySelector('#nombre').value.trim();
         const email = document.querySelector('#email').value.trim();
         const mensaje = document.querySelector('#mensaje').value.trim();
 
-        // Validación básica
+        // Validación de los campos
         if (!nombre || !email || !mensaje) {
             alert('Por favor, completa todos los campos.');
             return;
@@ -20,23 +17,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = { nombre, email, mensaje };
 
         try {
-            // Usamos la URL de la API correcta
-            const apiURL = 'https://kanjiro34.github.io/api/contacto'; // Cambia esta URL según tu necesidad
-
-            const response = await fetch(apiURL, {
+            // Enviar la solicitud POST al servidor para guardar los datos
+            const response = await fetch('https://kanjiro34.github.io/api/contacto', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             });
 
-            const result = await response.json();  // Respuesta del servidor
-            console.log('Respuesta del servidor:', result);
-
+            // Verificar si la respuesta fue exitosa
             if (response.ok) {
+                const result = await response.json();  // Respuesta del servidor
+                console.log('Respuesta del servidor:', result);
                 alert('Mensaje enviado con éxito');
-                form.reset(); // Reseteamos el formulario
+                document.querySelector('#contact-form').reset(); // Reseteamos el formulario
             } else {
-                alert('Error al enviar el mensaje: ' + (result.message || 'Intenta más tarde.'));
+                // Si la respuesta no fue exitosa, mostramos un mensaje de error
+                const errorResponse = await response.json();
+                alert('Error al enviar el mensaje: ' + (errorResponse.message || 'Intenta más tarde.'));
             }
         } catch (error) {
             // En caso de error de red o cualquier otro, mostrar un mensaje
