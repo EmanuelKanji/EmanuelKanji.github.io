@@ -1,41 +1,68 @@
+// Importamos las dependencias
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const contactRoutes = require('./backend/routes/contactRoutes');
-const cors = require('cors');
-require('dotenv').config(); // Cargar las variables de entorno desde .env
-
 const app = express();
+require('dotenv').config();  // Cargar las variables de entorno desde el archivo .env
 
-// Middleware para permitir solicitudes CORS
-app.use(cors());
+// Validar que la variable de entorno MONGO_URI esté definida
+if (!process.env.MONGO_URI) {
+  console.error('Error: La variable de entorno MONGO_URI no está definida.');
+  process.exit(1);  // Salir del proceso si la variable no está definida
+}
 
-// Middleware para parsear el cuerpo de las solicitudes como JSON
-app.use(bodyParser.json());
-
-// Conexión a la base de datos MongoDB usando variables de entorno
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+// Conexión a MongoDB Atlas usando Mongoose
+const mongoURI = process.env.MONGO_URI;  // Usar la URI de las variables de entorno
+mongoose.connect(mongoURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 })
   .then(() => {
-    console.log('Conexión a MongoDB exitosa');
+    console.log('Conectado a MongoDB Atlas');
   })
-  .catch((error) => {
-    console.error('Error al conectar a la base de datos MongoDB:', error);
-    process.exit(1);  // Termina el proceso si no se puede conectar
+  .catch((err) => {
+    console.error('Error al conectar a MongoDB Atlas', err);
+    process.exit(1);  // Salir si la conexión falla
   });
 
-// Rutas de la API de contacto
-app.use('/api/contacto', contactRoutes);
+// Middleware para procesar los datos JSON
+app.use(express.json());
 
-// Ruta raíz
+// Definir una ruta simple para probar la conexión
 app.get('/', (req, res) => {
-  res.send('API de Contacto funcionando');
+  res.send('¡Servidor en ejecución!');
 });
 
-// Puerto de escucha, configurado a través de las variables de entorno o por defecto en 5000
-const PORT = process.env.PORT || 5000;
+// Ruta para recibir los datos del formulario
+app.post('/api/contacto', async (req, res) => {
+  try {
+    const newContact = req.body;  // Suponiendo que los datos del formulario se envíen en el cuerpo de la solicitud
+    // await contact.save();
+    res.status(201).json({ message: 'Mensaje guardado con éxito' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error al guardar el mensaje', error });
+  }
+});
+
+// Ruta para obtener los usuarios (requiere autenticación)
+// Aquí debes agregar algún tipo de autenticación para asegurar la ruta
+app.get('/users', async (req, res) => {
+  // Autenticación de ejemplo (debes reemplazar con algo más seguro, como JWT)
+  const apiKey = req.headers['x-api-key'];
+  if (apiKey !== process.env.API_KEY) {
+    return res.status(403).json({ message: 'Acceso denegado. API Key inválida.' });
+  }
+
+  try {
+    const users = await mongoose.connection.db.collection('users').find().toArray();
+    res.status(200).send(users);
+  } catch (err) {
+    console.error('Error al obtener los usuarios:', err);
+    res.status(500).send({ message: 'Error al obtener los usuarios' });
+  }
+});
+
+// Configuración del puerto para que escuche en el adecuado
+const PORT = process.env.PORT || 5000; // Si no hay un puerto definido en las variables de entorno, usará 5000
 app.listen(PORT, () => {
-  console.log(`Servidor corriendo en el puerto ${PORT}`);
+  console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
