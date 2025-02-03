@@ -1,55 +1,53 @@
-// Importar variables de entorno
+// Importamos las dependencias
 require('dotenv').config();
-
-// Importar express, para crear el servidor
 const express = require('express');
-
-// Importar mongoose, para interactuar con la base de datos de MongoDB
 const mongoose = require('mongoose');
-
-// Importar cors, para permitir peticiones desde cualquier origen
 const cors = require('cors');
-
-// Importar el módulo path para resolver rutas de archivos
 const path = require('path');
 
-// Crear el objeto de express
+// Creamos la app de Express
 const app = express();
 
-// Conectar a la base de datos de MongoDB
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Conectado a MongoDB'))
-  .catch(err => console.error('Error al conectar a MongoDB:', err));
+// Conexión a MongoDB Atlas usando Mongoose
+const mongoURI = process.env.MONGO_URI;
+mongoose.connect(mongoURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+  .then(() => {
+    console.log('Conectado a MongoDB Atlas');
+  })
+  .catch((err) => {
+    console.error('Error al conectar a MongoDB Atlas', err);
+  });
 
-// Definir el puerto del servidor
-const PORT = process.env.PORT || 5000;
-
-// Configuración de CORS
-const allowedOrigins = ['https://kanjiro34.github.io'];  // Reemplaza con el dominio de tu frontend
-app.use(cors({
-  origin: allowedOrigins,  // Permitir solo el dominio de tu frontend
-  methods: ['GET', 'POST'], // Permitir los métodos GET y POST
-  allowedHeaders: ['Content-Type'],  // Permitir el header Content-Type
-}));
-
-// Habilitar el parsing de JSON en las peticiones
+// Middleware para procesar datos JSON
 app.use(express.json());
 
-// Configurar la carpeta estática para los archivos generados (después de hacer npm run build)
-app.use(express.static(path.join(__dirname, 'build')));  // Asegúrate de que el build esté en la raíz del proyecto
+// Middleware para permitir peticiones desde el frontend (CORS)
+const corsOptions = {
+  origin: 'https://kanjiro34.github.io',  // Ajusta con la URL de tu frontend
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type'],
+};
+app.use(cors(corsOptions));
 
-// Si se accede a cualquier ruta, redirigir a index.html (para manejar las rutas SPA)
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));  // Servir el index.html desde la carpeta 'build'
-});
+// Importamos las rutas
+const contactRoutes = require('./routes/contactRoutes');
 
-// Importar las rutas de contacto
-const contactRoutes = require('./backend/routes/contactRoutes');
-
-// Establecer la ruta para las peticiones de contacto
+// Definimos las rutas de la API
 app.use('/api/contacto', contactRoutes);
 
-// Iniciar el servidor
+// Servir los archivos estáticos del frontend (si tienes un build de React o similar)
+app.use(express.static(path.join(__dirname, 'build')));  // Ajusta según tu estructura de archivos
+
+// Si no hay coincidencia con ninguna ruta de API, servir el index.html (para aplicaciones SPA)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
+// Configuramos el puerto
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`✅ Servidor corriendo en http://localhost:${PORT}`);
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
