@@ -52,7 +52,7 @@ const contactRoutes = require('./backend/routes/contactRoutes');
 app.use('/api/contacto', contactRoutes);
 
 // Configuración del puerto para que escuche en el adecuado
-const PORT = process.env.PORT || 5000; // Si no hay un puerto definido en las variables de entorno, usará 5000
+const PORT = 3000; // Puerto fijo
 app.listen(PORT, () => {
-  console.log(`✅ Servidor corriendo en el puerto ${PORT}`);
+  console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
