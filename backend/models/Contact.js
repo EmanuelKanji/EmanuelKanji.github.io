@@ -1,13 +1,23 @@
 const mongoose = require('mongoose');
 
-// Definir el esquema para los mensajes de contacto
+// Definimos el esquema de datos que vamos a guardar
 const contactSchema = new mongoose.Schema({
-  nombre: { type: String, required: true },
-  email: { type: String, required: true },
-  mensaje: { type: String, required: true }
+    nombre: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true,
+        match: /.+\@.+\..+/ // Validación básica de correo electrónico
+    },
+    mensaje: {
+        type: String,
+        required: true
+    }
 });
 
-// Crear y exportar el modelo
+// Crear el modelo a partir del esquema
 const Contact = mongoose.model('Contact', contactSchema);
 
 module.exports = Contact;
