@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const contactRoutes = require('./routes/contactRoutes');  // Suponiendo que este es tu archivo de rutas
+const contactRoutes = require('./backend/routes/contactRoutes');  // Suponiendo que este es tu archivo de rutas
 
 const app = express();
 
