@@ -47,11 +47,17 @@
     <section id="contacto">
         <h2>Contacto</h2>
         <form id="contact-form">
-            <input type="text" id="nombre" name="nombre" placeholder="Tu Nombre" required>
-            <input type="email" id="email" name="email" placeholder="Tu Correo" required>
-            <textarea id="mensaje" name="mensaje" placeholder="Tu Mensaje" required></textarea>
-            <button type="submit">Enviar</button>
-        </form>
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" required>
+  
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+  
+          <label for="mensaje">Mensaje:</label>
+          <textarea id="mensaje" name="mensaje" required></textarea>
+  
+          <button type="submit">Enviar</button>
+      </form>
     </section>
 
     <script src="/frontend/js/script.js"></script>
