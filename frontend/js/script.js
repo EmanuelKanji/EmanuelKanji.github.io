@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             // ⚠️ IMPORTANTE: Cambia 'URL_DE_TU_API' por la URL real en Render
-            const response = await fetch('https://proyectojavic.onrender.com/api/contacto', {
+            const response = await fetch('https://backend-kanjiro34.onrender.com/api/contacto', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
