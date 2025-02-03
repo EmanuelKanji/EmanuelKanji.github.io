@@ -1,0 +1,29 @@
+{
+  "name": "kanjiro34.github.io",
+  "version": "1.0.0",
+  "description": "portafolio",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kanjiro34/kanjiro34.github.io.git"
+  },
+  "keywords": [
+    "portafolio"
+  ],
+  "author": "emanuel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kanjiro34/kanjiro34.github.io/issues"
+  },
+  "homepage": "https://github.com/kanjiro34/kanjiro34.github.io#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.9.6"
+  }
+}
