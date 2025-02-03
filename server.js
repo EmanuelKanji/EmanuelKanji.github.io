@@ -20,5 +20,5 @@ mongoose.connect('<url>', { useNewUrlParser: true, useUnifiedTopology: true })
 app.use('/api/contacto', contactRoutes);
 
 app.listen(3000, () => {
-    console.log('Servidor corriendo en http://localhost:3000');
+    console.log('Servidor corriendo en http://localhost:10000');
 });
