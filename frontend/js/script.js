@@ -20,11 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Enviar la solicitud POST al servidor para guardar los datos
             const response = await fetch('https://kanjiro34-github-io.onrender.com/api/contacto', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data) // Enviar los datos del formulario al backend
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
             });
+            
 
             // Verificar si la respuesta fue exitosa
             if (response.ok) {
