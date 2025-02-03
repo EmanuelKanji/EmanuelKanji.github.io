@@ -14,7 +14,10 @@ if (!process.env.MONGO_URI) {
 const mongoURI = process.env.MONGO_URI;  // Usar la URI de las variables de entorno
 mongoose.connect(mongoURI, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    // Añadido para evitar advertencias en futuras versiones
+    useFindAndModify: false,
+    useCreateIndex: true
 })
   .then(() => {
     console.log('Conectado a MongoDB Atlas');
@@ -32,11 +35,22 @@ app.get('/', (req, res) => {
   res.send('¡Servidor en ejecución!');
 });
 
-// Ruta para recibir los datos del formulario
+// Definir el esquema para los mensajes de contacto
+const contactSchema = new mongoose.Schema({
+  nombre: { type: String, required: true },
+  email: { type: String, required: true },
+  mensaje: { type: String, required: true }
+});
+
+// Crear el modelo de contacto
+const Contact = mongoose.model('Contact', contactSchema);
+
+// Ruta para recibir los datos del formulario (POST)
 app.post('/api/contacto', async (req, res) => {
   try {
-    const newContact = req.body;  // Suponiendo que los datos del formulario se envíen en el cuerpo de la solicitud
-    // await contact.save();
+    // Crear un nuevo contacto a partir de los datos del cuerpo de la solicitud
+    const newContact = new Contact(req.body);
+    await newContact.save();  // Guardar el contacto en la base de datos
     res.status(201).json({ message: 'Mensaje guardado con éxito' });
   } catch (error) {
     res.status(500).json({ message: 'Error al guardar el mensaje', error });
@@ -44,7 +58,6 @@ app.post('/api/contacto', async (req, res) => {
 });
 
 // Ruta para obtener los usuarios (requiere autenticación)
-// Aquí debes agregar algún tipo de autenticación para asegurar la ruta
 app.get('/users', async (req, res) => {
   // Autenticación de ejemplo (debes reemplazar con algo más seguro, como JWT)
   const apiKey = req.headers['x-api-key'];
@@ -53,7 +66,8 @@ app.get('/users', async (req, res) => {
   }
 
   try {
-    const users = await mongoose.connection.db.collection('users').find().toArray();
+    // Asumimos que tienes un modelo `User` ya definido, puedes usar el siguiente modelo para usuarios si lo necesitas
+    const users = await User.find().lean();
     res.status(200).send(users);
   } catch (err) {
     console.error('Error al obtener los usuarios:', err);
@@ -62,7 +76,7 @@ app.get('/users', async (req, res) => {
 });
 
 // Configuración del puerto para que escuche en el adecuado
-const PORT = process.env.PORT || 5000; // Si no hay un puerto definido en las variables de entorno, usará 5000
+const PORT = process.env.PORT || 5000;  // Si no hay un puerto definido en las variables de entorno, usará 5000
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
