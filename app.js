@@ -14,10 +14,7 @@ if (!process.env.MONGO_URI) {
 const mongoURI = process.env.MONGO_URI;  // Usar la URI de las variables de entorno
 mongoose.connect(mongoURI, {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
-    // Añadido para evitar advertencias en futuras versiones
-    useFindAndModify: false,
-    useCreateIndex: true
+    useUnifiedTopology: true
 })
   .then(() => {
     console.log('Conectado a MongoDB Atlas');
