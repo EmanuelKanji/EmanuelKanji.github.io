@@ -8,11 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Capturamos los valores de los campos del formulario
         const nombre = document.querySelector('#nombre').value.trim();
         const email = document.querySelector('#email').value.trim();
-        const telefono = document.querySelector('#telefono') ? document.querySelector('#telefono').value.trim() : null;
         const mensaje = document.querySelector('#mensaje').value.trim();
 
         // Validación básica
-        if (!nombre || !email || !mensaje || (telefono === null && !document.querySelector('#telefono'))) {
+        if (!nombre || !email || !mensaje) {
             alert('Por favor, completa todos los campos obligatorios.');
             return;
         }
