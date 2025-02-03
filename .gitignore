@@ -1,0 +1,28 @@
+# Dependencias de Node.js
+node_modules/
+
+# Archivos de configuración de entorno
+.env
+
+# Archivos del sistema operativo
+.DS_Store  # Para macOS
+Thumbs.db  # Para Windows
+
+# Archivos de log
+*.log
+
+# Archivos de compilación
+/dist
+/build
+
+# Archivos de VS Code
+.vscode/
+
+# Archivos de temporales de NPM
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Archivos de lock de npm y yarn
+package-lock.json
+yarn.lock
