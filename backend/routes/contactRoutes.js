@@ -1,40 +1,19 @@
 const express = require('express');
 const router = express.Router();
 
-// Importa el modelo de MongoDB si deseas guardar los datos en la base de datos
-// const Contact = require('../models/Contact'); // Si tienes un modelo para Contact
-
-// Ruta para manejar la solicitud POST de los datos de contacto
-router.post('/', async (req, res) => {
+// Ruta POST para manejar los datos del formulario de contacto
+router.post('/', (req, res) => {
     const { nombre, email, mensaje } = req.body;
 
-    // Validación básica
+    // Validación de los datos recibidos
     if (!nombre || !email || !mensaje) {
-        return res.status(400).json({ message: 'Faltan campos requeridos' });
+        return res.status(400).json({ message: 'Todos los campos son obligatorios.' });
     }
 
-    try {
-        // Si quieres guardar el mensaje en la base de datos, puedes hacerlo aquí
-        // Ejemplo de código si tienes un modelo de Contact:
-        const newContact = new Contact({
-            nombre,
-            email,
-            mensaje
-        });
-        
-        await newContact.save();
-      
+    // Aquí puedes agregar la lógica para almacenar los datos en la base de datos si es necesario
 
-        // Si no estás guardando en la base de datos, solo puedes devolver el mensaje recibido
-        console.log('Recibido:', nombre, email, mensaje);
-
-        // Respuesta exitosa
-        return res.status(200).json({ message: 'Mensaje recibido con éxito' });
-
-    } catch (error) {
-        console.error('Error al procesar el mensaje:', error);
-        return res.status(500).json({ message: 'Error interno del servidor' });
-    }
+    // Responder con un mensaje de éxito
+    res.json({ message: 'Mensaje recibido correctamente' });
 });
 
 module.exports = router;

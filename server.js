@@ -1,14 +1,16 @@
-require('dotenv').config();  // Cargar variables de entorno
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const contactRoutes = require('./backend/routes/contactRoutes');  
+const dotenv = require('dotenv');  // Requiere dotenv para cargar las variables de entorno
+const contactRoutes = require('./routes/contactRoutes');  // Asegúrate de que esta ruta esté bien configurada
+
+dotenv.config();  // Cargar las variables de entorno desde el archivo .env
 
 const app = express();
 
-// Configurar CORS solo para el frontend autorizado
+// Habilitar CORS para solo tu dominio específico
 app.use(cors({
-    origin: process.env.FRONTEND_URL,  // Usa una variable de entorno en lugar de escribir la URL directamente
+    origin: 'https://kanjiro34.github.io',  // Solo tu dominio puede hacer solicitudes
     methods: 'GET,POST',
     allowedHeaders: 'Content-Type'
 }));
@@ -16,19 +18,23 @@ app.use(cors({
 // Middleware para parsear JSON
 app.use(express.json());
 
-// Conexión segura a MongoDB Atlas con variables de entorno
-mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
-.then(() => console.log('✅ Conectado a MongoDB Atlas'))
-.catch((err) => console.error('❌ Error en la conexión a MongoDB:', err));
+// Conexión a MongoDB Atlas usando las variables de entorno
+const dbURI = process.env.MONGO_URI;
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Conectado a MongoDB Atlas'))
+  .catch((err) => console.log('Error en la conexión:', err));
 
-// Rutas del backend
+// Ruta para las solicitudes de contacto
 app.use('/api/contacto', contactRoutes);
 
-// Iniciar servidor en el puerto configurado
+// Middleware de manejo de errores (importante para producción)
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: 'Algo salió mal. Inténtalo más tarde.' });
+});
+
+// Iniciar servidor usando el puerto de la variable de entorno
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(`🚀 Servidor corriendo en el puerto ${PORT}`);
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });

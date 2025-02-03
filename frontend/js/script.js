@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = document.querySelector('#email').value.trim();
         const mensaje = document.querySelector('#mensaje').value.trim();
 
-        // Validación simple de los campos
+        // Validación de los campos
         if (!nombre || !email || !mensaje) {
             alert('Por favor, completa todos los campos.');
             return;
@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             });
-            
 
             // Verificar si la respuesta fue exitosa
             if (response.ok) {
