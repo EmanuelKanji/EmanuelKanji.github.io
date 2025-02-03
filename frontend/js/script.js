@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             // Usamos una URL de la API que es fácilmente modificable
-            const apiURL = 'https://proyectojavic.onrender.com/api/contacto'; // Cambia esta URL según tu necesidad
+            const apiURL = 'https://kanjiro34.github.io.onrender.com/api/contacto'; // Cambia esta URL según tu necesidad
 
             const response = await fetch(apiURL, {
                 method: 'POST',
