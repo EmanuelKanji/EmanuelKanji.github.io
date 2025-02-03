@@ -1,32 +1,34 @@
 const express = require('express');
-const app = express();
 const mongoose = require('mongoose');
-const contactRoutes = require('./contactRoutes');
+const bodyParser = require('body-parser');
+const contactRoutes = require('./routes/contactRoutes'); // Asegúrate de que la ruta es correcta
+const cors = require('cors');
+require('dotenv').config(); // Para usar variables de entorno
 
-// Configuración de la conexión a MongoDB Atlas
-const mongoUri = process.env.MONGO_URI;
+const app = express();
 
-mongoose.connect(mongoUri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+// Middleware
+app.use(cors()); // Si estás haciendo peticiones desde un frontend diferente
+app.use(bodyParser.json()); // Para analizar el cuerpo de las solicitudes como JSON
+
+// Rutas
+app.use('/api/contact', contactRoutes); // Agregar las rutas de contacto
+
+// Conexión a MongoDB
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 })
-.then(() => console.log('Conectado a MongoDB Atlas'))
-.catch((err) => console.log('Error al conectar a MongoDB Atlas:', err));
-
-// Middleware para parsear el cuerpo de las solicitudes
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// Rutas para el contacto
-app.use('/api/contact', contactRoutes);
-
-// Ruta para la página de inicio
-app.get('/', (req, res) => {
-    res.send('Bienvenido a la API de contacto');
-});
+  .then(() => {
+    console.log('Conexión a la base de datos exitosa');
+  })
+  .catch((error) => {
+    console.error('Error al conectar con MongoDB:', error);
+    process.exit(1);
+  });
 
 // Iniciar el servidor
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-    console.log(`Servidor iniciado en el puerto ${port}`);
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
