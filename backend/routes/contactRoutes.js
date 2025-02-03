@@ -1,70 +1,39 @@
 const express = require('express');
 const router = express.Router();
-const Contact = require('../models/Contact');
-const { body, validationResult } = require('express-validator');
-const cors = require('cors');
 
-// Habilitar CORS para todas las solicitudes
-router.use(cors());
+// Importa el modelo de MongoDB si deseas guardar los datos en la base de datos
+// const Contact = require('../models/Contact'); // Si tienes un modelo para Contact
 
-// Ruta POST para manejar el envío de datos del formulario de contacto
-router.post('/', 
-  // Validación usando express-validator
-  body('email').isEmail().withMessage('El correo electrónico no es válido'),
-  body('nombre').notEmpty().withMessage('El nombre es obligatorio'),
-  body('mensaje').notEmpty().withMessage('El mensaje es obligatorio'),
-  
-  async (req, res) => {
-    // Obtener errores de validación
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ message: 'Errores en los datos', errors: errors.array() });
+// Ruta para manejar la solicitud POST de los datos de contacto
+router.post('/', async (req, res) => {
+    const { nombre, email, mensaje } = req.body;
+
+    // Validación básica
+    if (!nombre || !email || !mensaje) {
+        return res.status(400).json({ message: 'Faltan campos requeridos' });
     }
 
     try {
-        const { nombre, email, mensaje } = req.body;
-
-        // Crear una nueva instancia de Contact con los datos recibidos
+        // Si quieres guardar el mensaje en la base de datos, puedes hacerlo aquí
+        // Ejemplo de código si tienes un modelo de Contact:
         const newContact = new Contact({
             nombre,
             email,
             mensaje
         });
-
-        // Guardar el nuevo contacto en la base de datos de MongoDB Atlas
+        
         await newContact.save();
+      
 
-        // Enviar una respuesta exitosa
-        res.status(201).json({ message: 'Mensaje guardado con éxito' });
-    } catch (error) {
-        console.error('Error al guardar el mensaje:', error);
-        res.status(500).json({ message: 'Error al guardar el mensaje', error: error.message });
-    }
-});
+        // Si no estás guardando en la base de datos, solo puedes devolver el mensaje recibido
+        console.log('Recibido:', nombre, email, mensaje);
 
-// Ruta GET para obtener todos los contactos
-router.get('/', async (req, res) => {
-    try {
-        const contacts = await Contact.find().exec();
-        res.json(contacts);
-    } catch (error) {
-        console.error('Error al obtener los contactos:', error);
-        res.status(500).json({ message: 'Error al obtener los contactos', error: error.message });
-    }
-});
+        // Respuesta exitosa
+        return res.status(200).json({ message: 'Mensaje recibido con éxito' });
 
-// Ruta GET para obtener un contacto por ID
-router.get('/:id', async (req, res) => {
-    try {
-        const id = req.params.id;
-        const contact = await Contact.findById(id).exec();
-        if (!contact) {
-            return res.status(404).json({ message: 'Contacto no encontrado' });
-        }
-        res.json(contact);
     } catch (error) {
-        console.error('Error al obtener el contacto:', error);
-        res.status(500).json({ message: 'Error al obtener el contacto', error: error.message });
+        console.error('Error al procesar el mensaje:', error);
+        return res.status(500).json({ message: 'Error interno del servidor' });
     }
 });
 
