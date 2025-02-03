@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('form').addEventListener('submit', async (event) => {
-        event.preventDefault(); // Evita que la página se recargue al enviar el formulario
+        event.preventDefault(); // Evita que la página se recargue
 
         // Capturar los datos del formulario
         const nombre = document.querySelector('#nombre').value.trim();
         const email = document.querySelector('#email').value.trim();
         const mensaje = document.querySelector('#mensaje').value.trim();
 
-        // Validación básica de los campos
+        // Validación básica
         if (!nombre || !email || !mensaje) {
             alert('Por favor, completa todos los campos.');
             return;
@@ -17,14 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = { nombre, email, mensaje };
 
         try {
-            // Enviar la solicitud POST al servidor para guardar los datos
+            // ⚠️ IMPORTANTE: Cambia 'URL_DE_TU_API' por la URL real de tu backend
             const response = await fetch('https://kanjiro34-github-io.onrender.com/api/contacto', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data) // Enviar los datos del formulario al backend
+                body: JSON.stringify(data)
             });
 
-            // Obtener la respuesta en formato JSON
             const result = await response.json();
             console.log('Respuesta del servidor:', result);
 
