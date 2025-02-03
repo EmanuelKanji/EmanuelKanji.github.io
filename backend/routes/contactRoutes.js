@@ -1,7 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const Contact = require('../models/Contact'); // Modelo de Contacto
-const { body, validationResult } = require('express-validator'); // Usamos express-validator para validaciones
+const Contact = require('../models/Contact');
+const { body, validationResult } = require('express-validator');
+const cors = require('cors');
+
+// Habilitar CORS para todas las solicitudes
+router.use(cors());
 
 // Ruta POST para manejar el envío de datos del formulario de contacto
 router.post('/', 
@@ -41,7 +45,6 @@ router.post('/',
 // Ruta GET para obtener todos los contactos
 router.get('/', async (req, res) => {
     try {
-        // Obtener todos los contactos de la base de datos
         const contacts = await Contact.find().exec();
         res.json(contacts);
     } catch (error) {
@@ -54,7 +57,6 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         const id = req.params.id;
-        // Obtener el contacto de la base de datos
         const contact = await Contact.findById(id).exec();
         if (!contact) {
             return res.status(404).json({ message: 'Contacto no encontrado' });
@@ -63,41 +65,6 @@ router.get('/:id', async (req, res) => {
     } catch (error) {
         console.error('Error al obtener el contacto:', error);
         res.status(500).json({ message: 'Error al obtener el contacto', error: error.message });
-    }
-});
-
-// Ruta PUT para actualizar un contacto
-router.put('/:id', async (req, res) => {
-    try {
-        const id = req.params.id;
-        const contact = await Contact.findById(id).exec();
-        if (!contact) {
-            return res.status(404).json({ message: 'Contacto no encontrado' });
-        }
-        const { nombre, email, mensaje } = req.body;
-        contact.nombre = nombre;
-        contact.email = email;
-        contact.mensaje = mensaje;
-
-        // Actualizar el contacto en la base de datos
-        await contact.save();
-        res.json(contact);
-    } catch (error) {
-        console.error('Error al actualizar el contacto:', error);
-        res.status(500).json({ message: 'Error al actualizar el contacto', error: error.message });
-    }
-});
-
-// Ruta DELETE para eliminar un contacto
-router.delete('/:id', async (req, res) => {
-    try {
-        const id = req.params.id;
-        // Eliminar el contacto de la base de datos
-        await Contact.findByIdAndRemove(id);
-        res.json({ message: 'Contacto eliminado con éxito' });
-    } catch (error) {
-        console.error('Error al eliminar el contacto:', error);
-        res.status(500).json({ message: 'Error al eliminar el contacto', error: error.message });
     }
 });
 
