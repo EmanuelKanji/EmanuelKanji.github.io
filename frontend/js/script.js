@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Creamos un objeto con los datos del formulario
-        const data = { nombre, email, telefono, mensaje };
+        const data = { nombre, email, mensaje };
 
         try {
             // Usamos una URL de la API que es fácilmente modificable
