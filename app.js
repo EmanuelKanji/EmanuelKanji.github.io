@@ -1,6 +1,7 @@
 // Importamos las dependencias
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');  // Importar cors para permitir solicitudes desde otros orígenes
 const app = express();
 require('dotenv').config();  // Cargar las variables de entorno desde el archivo .env
 
@@ -16,6 +17,14 @@ mongoose.connect(mongoURI, {
   .catch((err) => {
     console.error('Error al conectar a MongoDB Atlas', err);
   });
+
+// Configuración de CORS
+const allowedOrigins = ['https://kanjiro34.github.io'];  // Añadir el dominio permitido de tu frontend
+app.use(cors({
+  origin: allowedOrigins,  // Permitir solicitudes desde estos orígenes
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type']  // Permitir la cabecera Content-Type
+}));
 
 // Middleware para procesar los datos JSON
 app.use(express.json());
