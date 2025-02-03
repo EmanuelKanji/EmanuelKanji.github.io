@@ -2,13 +2,13 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const contactRoutes = require('./routes/contactRoutes'); // Ruta para el archivo contactRoutes.js
+const contactRoutes = require('./backend/routes/contactRoutes');
 const cors = require('cors');
-require('dotenv').config(); // Para cargar las variables de entorno
+require('dotenv').config();
 
 // Middleware
 app.use(cors());
-app.use(bodyParser.json()); // Analiza el cuerpo de las solicitudes JSON
+app.use(bodyParser.json());
 
 // Conexión a la base de datos
 mongoose.connect(process.env.MONGO_URI, {
@@ -20,11 +20,11 @@ mongoose.connect(process.env.MONGO_URI, {
   })
   .catch((error) => {
     console.error('Error al conectar con MongoDB:', error);
-    process.exit(1); // Si no se puede conectar, salir con código de error
+    process.exit(1);
   });
 
 // Rutas
-app.use('/api/contact', contactRoutes); // Definir las rutas de contacto
+app.use('/api/contact', contactRoutes);
 
 // Ruta raíz
 app.get('/', (req, res) => {
@@ -32,7 +32,9 @@ app.get('/', (req, res) => {
 });
 
 // Puerto de escucha
-const PORT = process.env.PORT || 5000; // Usa el puerto definido en la variable de entorno o 5000
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
+
+
