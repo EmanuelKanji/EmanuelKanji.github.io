@@ -4,7 +4,9 @@ import About from "./components/About"; // Importamos el componente About desde 
 import Projects from "./components/Projects"; // Importamos el componente Projects desde la carpeta components
 import Contact from "./components/Contact"; // Importamos el componente Contact desde la carpeta components
 import Footer from "./components/Footer"; // Importamos el componente Footer desde la carpeta components
-
+Header, HeaderH1, HeaderP, AboutMeSection, AboutMeH2, AboutMeP, 
+ProjectSection, ProjectH2, Proyecto, ProyectoH3, Tecnologias, TecnologiaSpan,
+ContactSection, ContactH2, Form, Input, Textarea, Button
 // Definimos un componente funcional llamado App
 function App() {
   return (
