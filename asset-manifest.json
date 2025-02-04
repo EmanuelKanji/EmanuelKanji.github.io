@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/kanjiro34.github.io/static/css/main.21281693.css",
+    "main.js": "/kanjiro34.github.io/static/js/main.41778518.js",
+    "index.html": "/kanjiro34.github.io/index.html",
+    "main.21281693.css.map": "/kanjiro34.github.io/static/css/main.21281693.css.map",
+    "main.41778518.js.map": "/kanjiro34.github.io/static/js/main.41778518.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.21281693.css",
+    "static/js/main.41778518.js"
+  ]
+}
