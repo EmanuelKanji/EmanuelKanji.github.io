@@ -1,27 +1,42 @@
+/* Variables CSS para los colores y tamaños */
+:root {
+  --color-primary: #007BFF;
+  --color-secondary: #333;
+  --color-light: #f4f4f9;
+  --color-dark: #333;
+  --color-white: #fff;
+  --color-gray: #ddd;
+  --font-family: 'Arial', sans-serif;
+  --font-size-base: 16px;
+  --padding-base: 20px;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --transition-duration: 0.3s;
+}
+
 /* Reset de estilos básicos */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
+  font-family: var(--font-family);
 }
 
 /* Body */
 body {
-  background-color: #f4f4f9;
-  color: #333;
+  background-color: var(--color-light);
+  color: var(--color-dark);
   line-height: 1.6;
-  font-size: 16px;
+  font-size: var(--font-size-base);
   padding: 0;
 }
 
 /* Header */
 header {
-  background-color: #333;
-  color: #fff;
+  background-color: var(--color-dark);
+  color: var(--color-white);
   text-align: center;
-  padding: 80px 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 80px var(--padding-base);
+  box-shadow: var(--box-shadow);
 }
 
 header h1 {
@@ -39,27 +54,27 @@ header p {
 /* Animaciones */
 @keyframes fadeInUp {
   0% {
-      opacity: 0;
-      transform: translateY(20px);
+    opacity: 0;
+    transform: translateY(20px);
   }
   100% {
-      opacity: 1;
-      transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 /* Sección sobre mí */
 #sobre-mi {
-  padding: 50px 20px;
+  padding: 50px var(--padding-base);
   text-align: center;
-  background-color: #fff;
+  background-color: var(--color-white);
   margin: 30px 0;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--box-shadow);
 }
 
 #sobre-mi h2 {
   font-size: 2rem;
-  color: #333;
+  color: var(--color-dark);
   margin-bottom: 20px;
   animation: fadeInUp 1s ease-out;
 }
@@ -74,14 +89,14 @@ header p {
 
 /* Sección Proyectos */
 #proyectos {
-  padding: 50px 20px;
+  padding: 50px var(--padding-base);
   background-color: #fafafa;
   text-align: center;
 }
 
 #proyectos h2 {
   font-size: 2rem;
-  color: #333;
+  color: var(--color-dark);
   margin-bottom: 30px;
   animation: fadeInUp 1s ease-out;
 }
@@ -91,13 +106,13 @@ header p {
   width: 30%;
   margin: 0 15px 30px;
   text-align: left;
-  background-color: #fff;
+  background-color: var(--color-white);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   overflow: hidden;
   position: relative;
   padding-bottom: 60px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform var(--transition-duration) ease, box-shadow var(--transition-duration) ease;
   cursor: pointer;
 }
 
@@ -110,7 +125,7 @@ header p {
 .proyecto .contenido {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity var(--transition-duration) ease, transform var(--transition-duration) ease;
   padding: 0 20px;
 }
 
@@ -121,12 +136,12 @@ header p {
 
 .miniatura img {
   width: 100%;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--color-gray);
 }
 
 .proyecto h3 {
   font-size: 1.5rem;
-  color: #333;
+  color: var(--color-dark);
   padding: 20px;
   font-weight: bold;
 }
@@ -155,29 +170,29 @@ header p {
 }
 
 .tecnologias span {
-  background-color: #333;
-  color: #fff;
+  background-color: var(--color-dark);
+  color: var(--color-white);
   padding: 5px 10px;
   border-radius: 5px;
   font-size: 0.9rem;
-  transition: background-color 0.3s;
+  transition: background-color var(--transition-duration);
 }
 
 .tecnologias span:hover {
-  background-color: #007BFF;
+  background-color: var(--color-primary);
 }
 
 /* Sección Contacto */
 #contacto {
-  padding: 50px 20px;
-  background-color: #fff;
+  padding: 50px var(--padding-base);
+  background-color: var(--color-white);
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--box-shadow);
 }
 
 #contacto h2 {
   font-size: 2rem;
-  color: #333;
+  color: var(--color-dark);
   margin-bottom: 30px;
   animation: fadeInUp 1s ease-out;
 }
@@ -194,26 +209,26 @@ header p {
   max-width: 600px;
   padding: 15px;
   margin: 10px 0;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-gray);
   border-radius: 5px;
   font-size: 1rem;
-  transition: border-color 0.3s;
+  transition: border-color var(--transition-duration);
 }
 
 #contacto input:focus,
 #contacto textarea:focus {
-  border-color: #007BFF;
+  border-color: var(--color-primary);
 }
 
 #contacto button {
-  background-color: #007BFF;
-  color: #fff;
+  background-color: var(--color-primary);
+  color: var(--color-white);
   border: none;
   padding: 15px 30px;
   font-size: 1.1rem;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color var(--transition-duration);
 }
 
 #contacto button:hover {
